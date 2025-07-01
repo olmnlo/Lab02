@@ -155,7 +155,7 @@ public class Main {
     public static void febonachi(int terms){
         int first = 0;
         int second = 1;
-
+        System.out.printf("Fibonacci sequence with %d terms: ",terms);
         for (int i = 0; i < terms; i++) {
             if(i == 0){
                 System.out.print(0+" ");
