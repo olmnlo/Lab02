@@ -95,6 +95,7 @@ public class Main {
         System.out.print("Enter the number of random numbers to generate: ");
         int generate = scn.nextInt();
         generateNumbers(minimum, maximum, generate);
+        System.out.println();
 
         //7. Write a program that checks the strength of a password. Create a method that evaluates a
         //password based on criteria like length, inclusion of special characters, and
