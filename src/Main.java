@@ -1,5 +1,3 @@
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -7,7 +5,7 @@ public class Main {
     public static void main(String[] args) {
         Scanner scn = new Scanner(System.in);
 
-        //1.Write a program to find all of the longest word in a given dictionary.
+        //1.Write a program to find all the longest word in a given dictionary.
         String[] my_string_list = {"cat", "dog", "red", "is", "am"};
         int longest = 0;
         for (int i = 0; i < my_string_list.length; i++) {
