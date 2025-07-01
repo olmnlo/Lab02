@@ -13,10 +13,10 @@ public class Main {
         //2. Write a program that displays the number of occurrences of an element in the array
         int[] my_ints_list = {1, 1, 1, 3, 3, 5};
         printArray(my_ints_list);
-        System.out.print("Enter element to check ocurrences: ");
-        int elemnet = scn.nextInt();
-        int ocurrence = countOccurrences(elemnet, my_ints_list);
-        System.out.printf("%d occurs %d times\n", elemnet, ocurrence);
+        System.out.print("Enter element to check occurrences: ");
+        int element = scn.nextInt();
+        int occurrence = countOccurrences(element, my_ints_list);
+        System.out.printf("%d occurs %d times\n", element, occurrence);
 
         //3.Write a program to find the k largest elements in a given array. Elements in the array can be in
         //any order.
@@ -37,7 +37,7 @@ public class Main {
         System.out.println("Reversed: ");
         reversArray(original_array);
 
-        //5. Write a menu driven Java program with following option:
+        //5. Write a menu-driven Java program with following option:
         System.out.print("Enter size of array: ");
         int size = scn.nextInt();
         int[] user_array = new int[size];
@@ -132,6 +132,8 @@ public class Main {
         int febo = scn.nextInt();
         febonachi(febo);
 
+        scn.close();
+
     }
 
     private static void generateNumbers(int minimum, int maximum, int generate) {
@@ -212,8 +214,8 @@ public class Main {
 
     public static int countOccurrences(int n, int[] arr){
         int count = 0;
-        for (int i = 0; i < arr.length; i++) {
-            if (n == arr[i]){
+        for (int j : arr) {
+            if (n == j) {
                 count++;
             }
         }
@@ -275,9 +277,9 @@ public class Main {
 
     public static int findLongest(String[] arr){
         int longest = 0;
-        for (int i = 0; i < arr.length; i++) {
-            if (arr[i].length() >= longest) {
-                longest = arr[i].length();
+        for (String s : arr) {
+            if (s.length() >= longest) {
+                longest = s.length();
             }
         }
         return longest;
