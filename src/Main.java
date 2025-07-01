@@ -29,7 +29,7 @@ public class Main {
         printArray(original_arr);
         System.out.print("Enter n to find n largest in this array: ");
         int k = scn.nextInt();
-        for (int i = 0; i < k; i++) {
+        for (int i = 0; i < k && i< original_arr.length; i++) {
             findLargest(original_arr);
         }
         System.out.println();
@@ -64,6 +64,7 @@ public class Main {
                     System.out.print("Enter element you want to add: ");
                     user_element = scn.nextInt();
                     addElemnt(user_array, user_element, index);
+                    index++;
                     break;
                 case 2:
                     printArray(user_array);
@@ -239,7 +240,11 @@ public class Main {
 
 
     public static int[] addElemnt(int[] arr, int element, int index){
-        arr[index]= element;
+        if (index >= arr.length){
+            System.out.println("You reached max element in array");
+        }else {
+            arr[index] = element;
+        }
         return arr;
     }
 
