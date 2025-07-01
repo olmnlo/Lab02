@@ -7,12 +7,7 @@ public class Main {
 
         //1.Write a program to find all the longest word in a given dictionary.
         String[] my_string_list = {"cat", "dog", "red", "is", "am"};
-        int longest = 0;
-        for (int i = 0; i < my_string_list.length; i++) {
-            if (my_string_list[i].length() >= longest) {
-                longest = my_string_list[i].length();
-            }
-        }
+        int longest = findLongest(my_string_list);
         printLongest(my_string_list, longest);
 
         //2. Write a program that displays the number of occurrences of an element in the array
@@ -143,13 +138,9 @@ public class Main {
         Random rand = new Random();
         for (int i = 0; i < generate; i++) {
             System.out.print(rand.nextInt((maximum-minimum+1))+minimum+" ");
-            // (0 to maximum - minimum + 1)+minimum
-            // maximum = 10, minimum = 5
-            // 0 to (6){not include 6}+5 => generates number 0 to 5 and add 5 to be minimum 5
         }
 
     }
-
 
     public static void febonachi(int terms){
         int first = 0;
@@ -281,4 +272,15 @@ public class Main {
             }
         }
     }
+
+    public static int findLongest(String[] arr){
+        int longest = 0;
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i].length() >= longest) {
+                longest = arr[i].length();
+            }
+        }
+        return longest;
+    }
+
 }
