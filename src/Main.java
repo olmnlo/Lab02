@@ -67,22 +67,28 @@ public class Main {
                     user_element = scn.nextInt();
                     addElemnt(user_array, user_element, index);
                     break;
-                    case 2:
-                        printArray(user_array);
-                        break;
-                        case 3:
-                            System.out.print("Enter element to find: ");
-                            user_element = scn.nextInt();
-                            int found_index = searchNumber(user_array, user_element);
-                            if (found_index == -1) {
-                                System.out.println("Not found");
-                            } else {
-                                System.out.printf("found %d in index %d", user_element, found_index);
-                            }
-                            break; case 4: sortArray(user_array);
-                            printArray(user_array);
-                            break; case 5: is_run = false;
-                            break; default: System.out.println("you must chose from 1 - 5");
+                case 2:
+                    printArray(user_array);
+                    break;
+                case 3:
+                    System.out.print("Enter element to find: ");
+                    user_element = scn.nextInt();
+                    int found_index = searchNumber(user_array, user_element);
+                    if (found_index == -1) {
+                        System.out.println("Not found");
+                    } else {
+                        System.out.printf("found %d in index %d", user_element, found_index);
+                    }
+                    break;
+                case 4:
+                    sortArray(user_array);
+                    printArray(user_array);
+                    break;
+                case 5:
+                    is_run = false;
+                    break;
+                default:
+                    System.out.println("you must chose from 1 - 5");
             }
         }
 
@@ -138,6 +144,9 @@ public class Main {
         Random rand = new Random();
         for (int i = 0; i < generate; i++) {
             System.out.print(rand.nextInt((maximum-minimum+1))+minimum+" ");
+            // (0 to maximum - minimum + 1)+minimum
+            // maximum = 10, minimum = 5
+            // 0 to (6){not include 6}+5 => generates number 0 to 5 and add 5 to be minimum 5
         }
 
     }
