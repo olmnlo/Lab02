@@ -1,174 +1,135 @@
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
         Scanner scn = new Scanner(System.in);
-        boolean runLab = true;
-        while (runLab) {
-            System.out.println("""
-                    chose question
-                    1.Write a program to find all of the longest word in a given dictionary
-                    2. Write a program that displays the number of occurrences of an element in the array.
-                    3.Write a program to find the k largest elements in a given array. Elements in the array can be in any order.
-                    4. Create a method to reverse an array of integers. Implement the method without creating a new array
-                    5. Write a menu driven Java program with following option:
-                    6. Create a method that generates a random number within a given range. Allow the user to specify the range and call the method to display random numbers.
-                    7. Write a program that checks the strength of a password. Create a method that evaluates a password based on criteria like length, inclusion of special characters, and uppercase/lowercase letters.
-                    8. Create a method that generates the Fibonacci sequence up to a specified number of terms.
-                    """);
-            int x = scn.nextInt();
-            switch (x) {
-                case 1:
-                    //1.Write a program to find all of the longest word in a given dictionary.
-                    String[] my_string_list = {"cat", "dog", "red", "is", "am"};
-                    int longest = 0;
-                    for (String s : my_string_list) {
-                        if (s.length() >= longest) {
-                            longest = s.length();
-                        }
-                    }
-                    printLongest(my_string_list, longest);
-                    break;
-                case 2:
-                    //2. Write a program that displays the number of occurrences of an element in the array
-                    int[] my_ints_list = {1, 1, 1, 3, 3, 5};
-                    printArray(my_ints_list);
-                    System.out.print("Enter element to check occurrences: ");
-                    int elemnet = scn.nextInt();
-                    int ocurrence = countOccurrences(elemnet, my_ints_list);
-                    System.out.printf("%d occurs %d times\n", elemnet, ocurrence);
-                    break;
-                case 3:
-                    //3.Write a program to find the k largest elements in a given array. Elements in the array can be in
-                    //any order.
 
-                    int[] original_arr = {1, 4, 17, 7, 25, 3, 100};
-                    printArray(original_arr);
-                    System.out.print("Enter n to find n largest in this array: ");
-                    int k = scn.nextInt();
-                    for (int i = 0; i < k; i++) {
-                        findLargest(original_arr);
-                    }
-                    System.out.println();
-                    break;
-                case 4:
-                    //4. Create a method to reverse an array of integers. Implement the method without creating a new
-                    //array.
-
-                    int[] original_array = {5, 4, 3, 2, 1};
-                    System.out.println("Original: ");
-                    printArray(original_array);
-                    System.out.println("Reversed: ");
-                    reversArray(original_array);
-                    break;
-                case 5:
-                    //5. Write a menu driven Java program with following option:
-                    System.out.print("Enter size of array: ");
-                    int size = scn.nextInt();
-                    int[] user_array = new int[size];
-                    int index = 0;
-                    boolean is_run = true;
-                    while (is_run) {
-                        System.out.println("""
-                                chose number:
-                                1. Accept elements of an array
-                                2. Display elements of an array
-                                3. Search the element within array
-                                4. Sort the array
-                                5. To Stop
-                                """);
-                        int chose = scn.nextInt();
-                        int user_element;
-                        switch (chose) {
-                            case 1:
-                                System.out.print("Enter element you want to add: ");
-                                user_element = scn.nextInt();
-                                addElemnt(user_array, user_element, index);
-                                break;
-                            case 2:
-                                printArray(user_array);
-                                break;
-                            case 3:
-                                System.out.print("Enter element to find: ");
-                                user_element = scn.nextInt();
-                                int found_index = searchNumber(user_array, user_element);
-                                if (found_index == -1) {
-                                    System.out.println("Not found");
-                                } else {
-                                    System.out.printf("found %d in index %d", user_element, found_index);
-                                }
-                                break;
-                            case 4:
-                                sortArray(user_array);
-                                printArray(user_array);
-                                break;
-                            case 5:
-                                is_run = false;
-                                break;
-                            default:
-                                System.out.println("you must chose from 1 - 5");
-                        }
-                    }
-                    break;
-                case 6:
-                    //6. Create a method that generates a random number within a given range. Allow the user to
-                    //specify the range and call the method to display random numbers.
-                    System.out.print("Enter minimum: ");
-                    int minimum = scn.nextInt();
-                    System.out.print("Enter maximum: ");
-                    int maximum = scn.nextInt();
-                    System.out.print("Enter the number of random numbers to generate: ");
-                    int generate = scn.nextInt();
-                    generateNumbers(minimum, maximum, generate);
-                    break;
-                case 7:
-                    //7. Write a program that checks the strength of a password. Create a method that evaluates a
-                    //password based on criteria like length, inclusion of special characters, and
-                    //uppercase/lowercase letters.
-                    //We have three methods: checkLength, checkSpecialCharacters, and
-                    //checkUpperCaseLowerCase, each of which assigns a score based on specific criteria.
-                    //-The totalScore is calculated by adding the scores from these methods.
-                    //-Classify the password as strong (8 or more), moderately strong (5 or more), or weak
-                    //based on the totalScore. -
-                    //The criteria for scoring:
-                    //Length: 0-5 characters (0 points), 6-7 characters (2 points), 8 or more characters
-                    //(3 points).
-                    //Special characters: Absence (0 points), Presence (2 points).
-                    //Uppercase and lowercase letters: Absence of both (0 points), presence of both (3
-                    //points).
-
-                    System.out.print("Enter password: ");
-                    String password = scn.next();
-                    int score = 0;
-                    score = checkLength(password, score);
-                    score = checkSpecialCharacters(password, score);
-                    score = checkUpperCaseLowerCase(password, score);
-                    if (score >= 8) {
-                        System.out.println("password is strong");
-                    } else if (score >= 5) {
-                        System.out.println("password is moderately strong");
-                    } else {
-                        System.out.println("password is weak");
-                    }
-                    break;
-                case 8:
-                    //8. Create a method that generates the Fibonacci sequence up to a specified number of terms.
-                    //Hint: The Fibonacci sequence is a mathematical sequence of numbers that starts with 0 and 1,
-                    //and each subsequent number in the sequence is the sum of the two preceding ones.
-
-                    System.out.print("Enter the number of Fibonacci terms to generate: ");
-                    int feb_num = scn.nextInt();
-                    fibonacci(feb_num);
-                    break;
-                case 9:
-                    runLab = false;
-                default:
-                    System.out.println("Chose correct number");
+        //1.Write a program to find all of the longest word in a given dictionary.
+        String[] my_string_list = {"cat", "dog", "red", "is", "am"};
+        int longest = 0;
+        for (int i = 0; i < my_string_list.length; i++) {
+            if (my_string_list[i].length() >= longest) {
+                longest = my_string_list[i].length();
             }
-
         }
-        scn.close();
+        printLongest(my_string_list, longest);
+
+        //2. Write a program that displays the number of occurrences of an element in the array
+        int[] my_ints_list = {1, 1, 1, 3, 3, 5};
+        printArray(my_ints_list);
+        System.out.print("Enter element to check ocurrences: ");
+        int elemnet = scn.nextInt();
+        int ocurrence = countOccurrences(elemnet, my_ints_list);
+        System.out.printf("%d occurs %d times\n", elemnet, ocurrence);
+
+        //3.Write a program to find the k largest elements in a given array. Elements in the array can be in
+        //any order.
+        int[] original_arr = {1, 4, 17, 7, 25, 3, 100};
+        printArray(original_arr);
+        System.out.print("Enter n to find n largest in this array: ");
+        int k = scn.nextInt();
+        for (int i = 0; i < k; i++) {
+            findLargest(original_arr);
+        }
+        System.out.println();
+
+        //4. Create a method to reverse an array of integers. Implement the method without creating a new
+        //array.
+        int[] original_array = {5, 4, 3, 2, 1};
+        System.out.println("Original: ");
+        printArray(original_array);
+        System.out.println("Reversed: ");
+        reversArray(original_array);
+
+        //5. Write a menu driven Java program with following option:
+        System.out.print("Enter size of array: ");
+        int size = scn.nextInt();
+        int[] user_array = new int[size];
+        int index = 0;
+        boolean is_run = true;
+        while (is_run) {
+            System.out.println("""
+                chose number:
+                1. Accept elements of an array
+                2. Display elements of an array
+                3. Search the element within array
+                4. Sort the array
+                5. To Stop
+                """);
+            int chose = scn.nextInt();
+            int user_element;
+            switch (chose) {
+                case 1:
+                    System.out.print("Enter element you want to add: ");
+                    user_element = scn.nextInt();
+                    addElemnt(user_array, user_element, index);
+                    break;
+                    case 2:
+                        printArray(user_array);
+                        break;
+                        case 3:
+                            System.out.print("Enter element to find: ");
+                            user_element = scn.nextInt();
+                            int found_index = searchNumber(user_array, user_element);
+                            if (found_index == -1) {
+                                System.out.println("Not found");
+                            } else {
+                                System.out.printf("found %d in index %d", user_element, found_index);
+                            }
+                            break; case 4: sortArray(user_array);
+                            printArray(user_array);
+                            break; case 5: is_run = false;
+                            break; default: System.out.println("you must chose from 1 - 5");
+            }
+        }
+
+        //6. Create a method that generates a random number within a given range. Allow the user to
+        //specify the range and call the method to display random numbers.
+        System.out.print("Enter minimum: ");
+        int minimum = scn.nextInt();
+        System.out.print("Enter maximum: ");
+        int maximum = scn.nextInt();
+        System.out.print("Enter the number of random numbers to generate: ");
+        int generate = scn.nextInt();
+        generateNumbers(minimum, maximum, generate);
+
+        //7. Write a program that checks the strength of a password. Create a method that evaluates a
+        //password based on criteria like length, inclusion of special characters, and
+        //uppercase/lowercase letters.
+        //We have three methods: checkLength, checkSpecialCharacters, and
+        //checkUpperCaseLowerCase, each of which assigns a score based on specific criteria.
+        //-The totalScore is calculated by adding the scores from these methods.
+        //-Classify the password as strong (8 or more), moderately strong (5 or more), or weak
+        //based on the totalScore. -
+        //The criteria for scoring:
+        //Length: 0-5 characters (0 points), 6-7 characters (2 points), 8 or more characters
+        //(3 points).
+        //Special characters: Absence (0 points), Presence (2 points).
+        //Uppercase and lowercase letters: Absence of both (0 points), presence of both (3
+        //points).
+        System.out.print("Enter password: ");
+        String password = scn.next();
+        int score = 0;
+        score = checkLength(password, score);
+        score = checkSpecialCharacters(password, score);
+        score = checkUpperCaseLowerCase(password, score);
+        if (score >= 8) {
+            System.out.println("password is strong");
+        } else if (score >= 5) {
+            System.out.println("password is moderately strong");
+        } else {
+            System.out.println("password is weak");
+        }
+
+        //8. Create a method that generates the Fibonacci sequence up to a specified number of terms.
+        //Hint: The Fibonacci sequence is a mathematical sequence of numbers that starts with 0 and 1,
+        //and each subsequent number in the sequence is the sum of the two preceding ones.
+        System.out.print("Enter the number of Fibonacci terms to generate: ");
+        int febo = scn.nextInt();
+        febonachi(febo);
 
     }
 
@@ -181,7 +142,7 @@ public class Main {
     }
 
 
-    public static void fibonacci(int terms){
+    public static void febonachi(int terms){
         int first = 0;
         int second = 1;
 
@@ -251,8 +212,8 @@ public class Main {
 
     public static int countOccurrences(int n, int[] arr){
         int count = 0;
-        for (int j : arr) {
-            if (n == j) {
+        for (int i = 0; i < arr.length; i++) {
+            if (n == arr[i]){
                 count++;
             }
         }
